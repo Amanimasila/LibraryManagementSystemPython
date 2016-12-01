@@ -11,11 +11,11 @@ class Librarian(object):
 		self.address = address
 		self.city = city
 		self.phNo = phNo
-		self.id = createId(self, self.firstName, self.lastName)
-		self.password = createPassword(self, self.firstName, self.lastName)
+		self.id = createLibrarianId(firstName, lastName)
+		self.password = createPassword(firstName, lastName)
 
 
-	def createId(self, firstName, lastName):
+	def createLibrarianId(self, firstName, lastName):
 		return firstName[:4] + lastName[:4]
 
 	def createPassword(self, firstName, lastName):
@@ -32,5 +32,8 @@ class Book(object):
 		self.quantity = quantity
 		self.issued = issued
 		self.addedDate = datetime.datetime.now().strftime("%Y-%m-%d")
-		self.id = name[:4] + author[:4]
+		self.id = createBookId(name, author)
+
+	def createBookId(self, name, author):
+		return name[:4] + author[:4]
 		
